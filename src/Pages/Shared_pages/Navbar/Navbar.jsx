@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   return (
@@ -30,14 +31,17 @@ const Navbar = () => {
               <a>Home</a>
             </li>
             <li>
-                <a href="">Apps</a>
+              <a href="">Apps</a>
             </li>
             <li>
               <a>Installation</a>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">FlowApps</a>
+        <a className="btn btn-ghost text-xl">
+          <img src={logo} alt="FlowApps Logo" className="w-8 h-8" />
+          FlowApps
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
