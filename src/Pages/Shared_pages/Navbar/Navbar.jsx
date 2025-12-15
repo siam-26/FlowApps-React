@@ -40,7 +40,7 @@ const Navbar = () => {
         </div>
         <a className="btn btn-ghost text-xl">
           <img src={logo} alt="FlowApps Logo" className="w-8 h-8" />
-          FlowApps
+          <span className="text-[#814fe8]">FlowApps</span>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -57,7 +57,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Contribute</a>
+        <a className="btn bg-[#814fe8] text-white font-semibold">Contribute</a>
       </div>
     </div>
   );
