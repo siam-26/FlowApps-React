@@ -5,7 +5,7 @@ import bannerImg from "../../../assets/hero.png";
 
 const Banner = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="pt-20 bg-white">
       <div className="max-w-3xl mx-auto text-center px-4">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           We Build <br /> <span className="text-[#814fe8]">Productive</span>
