@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../../assets/logo.png";
+import { Link } from "react-router";
 
 const Navbar = () => {
   return (
@@ -38,18 +39,18 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <Link to='/' className="btn btn-ghost text-xl">
           <img src={logo} alt="FlowApps Logo" className="w-8 h-8" />
           <span className="text-[#814fe8]">FlowApps</span>
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="">Apps</a>
+            <Link to="/all_apps">Apps</Link>
           </li>
           <li>
             <a>Installation</a>
