@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Star, Download, Search } from "lucide-react";
 import { Link } from "react-router";
+import appError from "../../assets/App-Error.png";
 
 export default function All_Apps() {
   const [apps, setApps] = useState([]);
@@ -30,7 +31,7 @@ export default function All_Apps() {
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
         <p className="text-slate-700 font-medium">
-          Total Apps:{" "}
+          Total Apps:
           <span className="font-semibold">{searchedApps.length}</span>
         </p>
 
@@ -49,9 +50,25 @@ export default function All_Apps() {
         </div>
       </div>
 
-      
       {searchedApps.length === 0 ? (
-        <p className="text-center text-slate-500 text-lg">No App Found</p>
+        <div className="min-h-screen flex flex-col items-center justify-center text-center">
+          <img src={appError} alt="App Not Found" className="w-72 mb-6" />
+
+          <h2 className="text-2xl font-bold text-slate-800 mb-2">
+            OPPS!! APP NOT FOUND
+          </h2>
+
+          <p className="text-slate-500 max-w-md mb-6">
+            The App you are requesting is not found on your system. Please try
+            another apps
+          </p>
+
+          <Link to="/all_apps">
+            <button className="px-6 py-3 bg-[#814fe8] text-white rounded-lg font-medium cursor-pointer">
+              Go Back!
+            </button>
+          </Link>
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {searchedApps.map((app) => (

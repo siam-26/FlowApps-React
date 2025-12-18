@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Download, Star, MessageSquare } from "lucide-react";
 import {
   BarChart,
@@ -9,28 +9,34 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import toast, { Toaster } from "react-hot-toast";
-import { useParams } from "react-router";
+import { useLoaderData, Link } from "react-router";
 
 export default function App_Details() {
-  const { id } = useParams();
-  const [app, setApp] = useState(null);
+  const app = useLoaderData(); 
   const [installed, setInstalled] = useState(false);
-
-  useEffect(() => {
-    fetch("/data.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const found = data.find((item) => item.id === Number(id));
-        setApp(found);
-      });
-  }, [id]);
 
   const handleInstall = () => {
     setInstalled(true);
     toast.success("App installed successfully!");
   };
 
-  if (!app) return null;
+
+  if (!app) {
+    return (
+      <div className="flex flex-col items-center justify-center mt-20">
+        <h2 className="text-2xl font-bold mb-2">App is Not Found</h2>
+        <p className="text-slate-500 mb-4 text-center">
+          The App you are requesting is not found on your system. Please try
+          another app.
+        </p>
+        <Link to="/all_apps">
+          <button className="bg-[#814fe8] text-white font-medium px-6 py-2 rounded-md cursor-pointer">
+            Go Back!
+          </button>
+        </Link>
+      </div>
+    );
+  }
 
   const ratingData = [...app.ratings].reverse();
 
@@ -49,7 +55,6 @@ export default function App_Details() {
           </div>
         </div>
 
-        {/* Details */}
         <div className="lg:col-span-2">
           <h1 className="text-2xl md:text-3xl font-bold text-slate-900">
             {app.title}
@@ -59,7 +64,6 @@ export default function App_Details() {
             <span className="text-indigo-600">{app.companyName}</span>
           </p>
 
-          {/* Stats */}
           <div className="flex flex-wrap gap-8 mt-6">
             <Stat
               icon={<Download className="text-green-600" />}
@@ -78,7 +82,6 @@ export default function App_Details() {
             />
           </div>
 
-          {/* Install Button */}
           <button
             onClick={handleInstall}
             disabled={installed}
@@ -94,10 +97,8 @@ export default function App_Details() {
         </div>
       </div>
 
-      {/* Ratings Chart */}
       <div className="mt-16">
         <h2 className="text-xl font-semibold text-slate-800 mb-6">Ratings</h2>
-
         <div className="w-full h-72">
           <ResponsiveContainer width="80%" height="80%">
             <BarChart data={ratingData} layout="vertical">
@@ -110,12 +111,10 @@ export default function App_Details() {
         </div>
       </div>
 
-      {/* Description */}
       <div className="mt-16">
         <h2 className="text-xl font-semibold text-slate-800 mb-4">
           Description
         </h2>
-
         <div className="space-y-4 text-slate-600 leading-relaxed">
           <p>{app.description}</p>
         </div>
